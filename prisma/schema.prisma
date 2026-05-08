@@ -6,44 +6,38 @@ datasource db {
     provider = "postgresql"
 }
 
-
 //Equipe / Integrante /Lucas
 
 model Equipe {
-    id           Int           @id @default(autoincrement())
-    nome         String
+    id   Int    @id @default(autoincrement())
+    nome String
 
-    integrantes  Integrante[]
+    integrantes Integrante[]
 
     @@map("equipe")
 }
 
 model Integrante {
-    id         Int      @id @default(autoincrement())
-    nome       String
-    curso      String
-    foto       String?
+    id    Int     @id @default(autoincrement())
+    nome  String
+    curso String
+    foto  String?
 
-    equipeId   Int
-    equipe     Equipe   @relation(fields: [equipeId], references: [id])
+    equipeId Int
+    equipe   Equipe @relation(fields: [equipeId], references: [id])
 
     @@map("integrante")
 }
 
-
-
-
 //Usuario // Henrico
 
-
 model Usuario {
-    id              Int      @id @default(autoincrement())
-    nome            String
-    email           String   @unique
-    senha           String
-    numeroTelefone  String?
-    foto            String?
-
+    id             Int     @id @default(autoincrement())
+    nome           String
+    email          String  @unique
+    senha          String
+    numeroTelefone String?
+    foto           String?
 
     @@map("Usuario")
 }
@@ -51,86 +45,78 @@ model Usuario {
 //conteudo // Henrico
 
 model Conteudo {
-    id              Int      @id @default(autoincrement())
-    materia         String
-    resumo          String
-    dicas           String
-    analises        String
-    curiosidades    String
-    videoAulas      String
+    id           Int    @id @default(autoincrement())
+    materia      String
+    resumo       String
+    dicas        String
+    analises     String
+    curiosidades String
+    videoAulas   String
 
     @@map("conteudo")
 }
 
-
-
-
 //Livro / autor  // Nunes
 
 model Livro {
-    id              Int      @id @default(autoincrement())
-    nome            String
-    resumo          String
-    personagens     String
-    contextoHist    String
-    publicacao      String
-    foto            String?
+    id           Int     @id @default(autoincrement())
+    nome         String
+    resumo       String
+    personagens  String
+    contextoHist String
+    publicacao   String
+    foto         String?
 
-    autorId   Int
-    autor     Autor   @relation(fields: [autorId], references: [id])
-
-
+    autorId Int
+    autor   Autor @relation(fields: [autorId], references: [id])
 
     @@map("livro")
 }
 
-
 model Autor {
-    id              Int      @id @default(autoincrement())
-    nome            String
-    biografiaAutor  String
-    dataNascimento  DateTime
-    dataMorte       DateTime?
-    foto            String?
-    livros          Livro[]
-
+    id             Int       @id @default(autoincrement())
+    nome           String
+    biografiaAutor String
+    dataNascimento DateTime
+    dataMorte      DateTime?
+    foto           String?
+    livros         Livro[]
 
     @@map("autor")
 }
 
-
-
-
 //Simulado / questões / alternativas  // LucasTheBento
 
 model Simulado {
-    id          Int        @id @default(autoincrement())
-    nome        String
-    materia     String
-    resumo      String
-    questoes    Questao[]
+    id       Int       @id @default(autoincrement())
+    nome     String
+    materia  String
+    resumo   String
+    questoes Questao[]
 
     @@map("simulado")
 }
 
 model Questao {
-    id            Int          @id @default(autoincrement())
-    enunciado     String
-    explicacao    String?
-    simuladoId    Int
-    simulado      Simulado     @relation(fields: [simuladoId], references: [id])
+    id         Int      @id @default(autoincrement())
+    enunciado  String
+    explicacao String?
+    simuladoId Int
+    simulado   Simulado @relation(fields: [simuladoId], references: [id], onDelete: Cascade)
 
-    alternativas  Alternativa[]
+    alternativas Alternativa[]
 
     @@map("questao")
 }
 
 model Alternativa {
-    id          Int       @id @default(autoincrement())
-    texto       String
-    correta     Boolean   @default(false)
-    questaoId   Int
-    questao     Questao   @relation(fields: [questaoId], references: [id])
+    id        Int     @id @default(autoincrement())
+    texto     String
+    correta   Boolean @default(false)
+    questaoId Int
+    questao   Questao @relation(fields: [questaoId], references: [id], onDelete: Cascade)
 
     @@map("alternativa")
 }
+
+//onDelete: Cascade foi usado para que caso o registro pai seja deletado, todos os registros filhos relacionados serem automaticamente deletados também.
