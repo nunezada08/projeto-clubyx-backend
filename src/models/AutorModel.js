@@ -75,6 +75,8 @@ export default class AutorModel {
         if (!data) {
             return null;
         }
-        return data;
+        const autor = new AutorModel(data);
+        autor.livros = data.livros
+        return autor
     }
 }
