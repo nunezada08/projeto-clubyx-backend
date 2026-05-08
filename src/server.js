@@ -15,6 +15,7 @@ import { apiKey } from './lib/middlewares/APIkey.js';
 import fotoRouteLivro from './routes/fotoRouteLivro.js';
 import fotoRouteUsuario from './routes/fotoRouteUsuarios.js'
 import fotoRouteAutor from './routes/fotoRouteAutor.js'
+import fotoRouteIntegrantes from './routes/fotoRouteIntegrantes.js'
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -31,6 +32,7 @@ app.use('/alternativas', apiKey, alternativasRoutes)
 app.use('/equipes', apiKey, equipesRoutes);
 
 app.use('/integrantes', apiKey, integrantesRoutes);
+app.use('/integrantes', apiKey, fotoRouteIntegrantes);
 
 app.use('/livros', apiKey, livroRoutes);
 app.use('/livros', apiKey, fotoRouteLivro);
@@ -38,6 +40,7 @@ app.use('/livros', apiKey, fotoRouteLivro);
 app.use('/questoes', apiKey, questaosRoutes);
 
 app.use('/simulados', apiKey, simuladosRoutes);
+
 
 app.use('/usuarios', apiKey, usuariosRoutes);
 app.use('/usuarios', apiKey, fotoRouteUsuario);
