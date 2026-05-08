@@ -31,7 +31,7 @@ app.use('/equipes', apiKey, equipesRoutes);
 app.use('/integrantes', apiKey, integrantesRoutes);
 
 app.use('/livros', apiKey, livroRoutes);
-app.use('/livro', apiKey, fotoRouteLivro);
+app.use('/livros', apiKey, fotoRouteLivro);
 
 app.use('/questoes', apiKey, questaosRoutes);
 
