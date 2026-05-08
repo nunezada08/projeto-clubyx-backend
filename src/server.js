@@ -37,11 +37,11 @@ app.use('/questoes', apiKey, questaosRoutes);
 
 app.use('/simulados', apiKey, simuladosRoutes);
 
-app.use('/', apiKey, usuariosRoutes);
+app.use('/usuarios', apiKey, usuariosRoutes);
 
-app.use('/', apiKey, conteudoRoutes);
+app.use('/conteudo', apiKey, conteudoRoutes);
 
-app.use('/', apiKey, autorRoutes);
+app.use('/autor', apiKey, autorRoutes);
 
 app.use('/uploads', express.static('uploads'));
 

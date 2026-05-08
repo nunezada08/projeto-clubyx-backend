@@ -3,10 +3,10 @@ import * as controller from '../controllers/conteudoController.js';
 
 const router = express.Router();
 
-router.post('/conteudos', controller.criar);
-router.get('/conteudos', controller.buscarTodos);
-router.get('/conteudos/:id', controller.buscarPorId);
-router.put('/conteudos/:id', controller.atualizar);
-router.delete('/conteudos/:id', controller.deletar);
+router.post('/', controller.criar);
+router.get('/', controller.buscarTodos);
+router.get('/:id', controller.buscarPorId);
+router.put('/:id', controller.atualizar);
+router.delete('/:id', controller.deletar);
 
 export default router;

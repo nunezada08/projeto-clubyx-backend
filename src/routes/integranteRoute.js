@@ -3,10 +3,10 @@ import * as controller from '../controllers/integranteController.js';
 
 const router = express.Router();
 
-router.post('/integrantes', controller.criar);
-router.get('/integrantes', controller.buscarTodos);
-router.get('/integrantes/:id', controller.buscarPorId);
-router.put('/integrantes/:id', controller.atualizar);
-router.delete('/integrantes/:id', controller.deletar);
+router.post('/', controller.criar);
+router.get('/', controller.buscarTodos);
+router.get('/:id', controller.buscarPorId);
+router.put('/:id', controller.atualizar);
+router.delete('/:id', controller.deletar);
 
 export default router;

@@ -3,10 +3,10 @@ import * as controller from '../controllers/livroController.js';
 
 const router = express.Router();
 
-router.post('/livros', controller.criar);
-router.get('/livros', controller.buscarTodos);
-router.get('/livros/:id', controller.buscarPorId);
-router.put('/livros/:id', controller.atualizar);
-router.delete('/livros/:id', controller.deletar);
+router.post('/', controller.criar);
+router.get('/', controller.buscarTodos);
+router.get('/:id', controller.buscarPorId);
+router.put('/:id', controller.atualizar);
+router.delete('/:id', controller.deletar);
 
 export default router;

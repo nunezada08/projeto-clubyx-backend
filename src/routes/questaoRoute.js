@@ -3,9 +3,9 @@ import * as controller from '../controllers/questaoController.js';
 
 const router = express.Router();
 
-router.post('/questoes', controller.criar);
-router.get('/questoes', controller.buscarTodos);
-router.get('/questoes/:id', controller.buscarPorId);
-router.put('/questoes/:id', controller.atualizar);
-router.delete('/questoes/:id', controller.deletar);
+router.post('/', controller.criar);
+router.get('/', controller.buscarTodos);
+router.get('/:id', controller.buscarPorId);
+router.put('/:id', controller.atualizar);
+router.delete('/:id', controller.deletar);
 export default router;
