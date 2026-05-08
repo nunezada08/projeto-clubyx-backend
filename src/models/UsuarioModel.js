@@ -23,7 +23,7 @@ export default class UsuarioModel {
     async atualizar() {
         return prisma.usuario.update({
             where: { id: this.id },
-            data: { nome: this.nome, email: this.email, senha: this.senha },
+            data: { nome: this.nome, email: this.email, senha: this.senha, foto: this.foto },
         });
     }
 

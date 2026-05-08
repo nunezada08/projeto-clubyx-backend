@@ -6,7 +6,7 @@ export const criar = async (req, res) => {
             return res.status(400).json({ error: 'Corpo da requisição vazio. Envie os dados!' });
         }
 
-        const { nome, email, senha } = req.body;
+        const { nome, email, senha, foto } = req.body;
 
         if (!nome) {
             return res.status(400).json({ error: 'O campo "nome" é obrigatório!' });
@@ -97,6 +97,9 @@ export const atualizar = async (req, res) => {
         }
         if (req.body.senha !== undefined) {
             usuario.senha = req.body.senha;
+        }
+        if (req.body.foto !== undefined) {
+            usuario.foto = req.body.foto
         }
 
         const data = await usuario.atualizar();
