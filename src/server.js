@@ -11,6 +11,9 @@ import conteudoRoutes from './routes/conteudoRoutes.js'
 import autorRoutes from './routes/autorRoutes.js'
 import { apiKey } from './lib/middlewares/APIkey.js';
 
+// FOTOS --------------------------------------------------
+import fotoRouteLivro from './routes/fotoRouteLivro.js';
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -21,23 +24,26 @@ app.get('/', (req, res) => {
 });
 
 // Rotas
-app.use('/', apiKey, alternativasRoutes)
+app.use('/alternativas', apiKey, alternativasRoutes)
 
-app.use('/', apiKey, equipesRoutes);
+app.use('/equipes', apiKey, equipesRoutes);
 
-app.use('/', apiKey, integrantesRoutes);
+app.use('/integrantes', apiKey, integrantesRoutes);
 
-app.use('/', apiKey, livroRoutes);
+app.use('/livros', apiKey, livroRoutes);
+app.use('/livro', apiKey, fotoRouteLivro);
 
-app.use('/', apiKey, questaosRoutes);
+app.use('/questoes', apiKey, questaosRoutes);
 
-app.use('/', apiKey, simuladosRoutes);
+app.use('/simulados', apiKey, simuladosRoutes);
 
 app.use('/', apiKey, usuariosRoutes);
 
 app.use('/', apiKey, conteudoRoutes);
 
 app.use('/', apiKey, autorRoutes);
+
+app.use('/uploads', express.static('uploads'));
 
 
 

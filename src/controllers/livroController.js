@@ -7,7 +7,7 @@ export const criar = async (req, res) => {
             return res.status(400).json({ error: 'Corpo da requisição vazio. Envie os dados!' });
         }
 
-        const { nome, resumo, personagens, contextoHist, publicacao, autorId } = req.body;
+        const { nome, resumo, personagens, contextoHist, publicacao, autorId, foto } = req.body;
 
         if (!nome){
             return res.status(400).json({ error: 'O campo "nome" é obrigatório!' });
@@ -29,7 +29,7 @@ export const criar = async (req, res) => {
         }
 
 
-        const livro = new LivroModel({ nome, resumo, personagens, contextoHist, publicacao});
+        const livro = new LivroModel({ nome, resumo, personagens, contextoHist, publicacao, foto});
         const data = await livro.criar();
 
         return res.status(201).json({ message: 'Livro criado com sucesso!', data });
@@ -108,6 +108,7 @@ export const atualizar = async (req, res) => {
         if (req.body.publicacao !== undefined) {
             livro.publicacao = req.body.publicacao;
         }
+        if (req.body.foto !== undefined) livro.foto = req.body.foto;
 
         const data = await livro.atualizar();
 

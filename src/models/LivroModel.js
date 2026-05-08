@@ -30,6 +30,7 @@ export default class LivroModel {
                 contextoHist: this.contextoHist,
                 publicacao: this.publicacao,
                 autorId: this.autorId,
+                foto: this.foto,
             },
         });
     }
