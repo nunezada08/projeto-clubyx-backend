@@ -10,6 +10,7 @@ import usuariosRoutes from './routes/usuarioRoute.js'
 import livroRoutes from './routes/livroRoutes.js';
 import conteudoRoutes from './routes/conteudoRoutes.js'
 import autorRoutes from './routes/autorRoutes.js'
+import { apiKey } from './lib/middlewares/APIkey.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -21,23 +22,23 @@ app.get('/', (req, res) => {
 });
 
 // Rotas
-app.use('/', alternativasRoutes)
+app.use('/', apiKey, alternativasRoutes)
 
-app.use('/', equipesRoutes)
+app.use('/', apiKey, equipesRoutes);
 
-app.use('/', integrantesRoutes)
+app.use('/', apiKey, integrantesRoutes);
 
-app.use('/', livroRoutes);
+app.use('/', apiKey, livroRoutes);
 
-app.use('/', questaosRoutes)
+app.use('/', apiKey, questaosRoutes);
 
-app.use('/', simuladosRoutes)
+app.use('/', apiKey, simuladosRoutes);
 
-app.use('/', usuariosRoutes)
+app.use('/', apiKey, usuariosRoutes);
 
-app.use('/', conteudoRoutes);
+app.use('/', apiKey, conteudoRoutes);
 
-app.use('/', autorRoutes);
+app.use('/', apiKey, autorRoutes);
 
 
 
