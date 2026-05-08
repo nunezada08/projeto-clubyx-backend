@@ -1,5 +1,5 @@
 import express from 'express';
-import * as controller from '../controllers/usuarioFotoController';
+import * as controller from '../controllers/usuarioFotoController.js';
 import { uploads } from '../utils/fotoHelper.js';
 
 const router = express.Router();

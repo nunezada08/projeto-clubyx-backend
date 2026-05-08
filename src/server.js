@@ -13,6 +13,7 @@ import { apiKey } from './lib/middlewares/APIkey.js';
 
 // FOTOS --------------------------------------------------
 import fotoRouteLivro from './routes/fotoRouteLivro.js';
+import fotoRouteUsuario from './routes/fotoRouteUsuarios.js'
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -38,6 +39,7 @@ app.use('/questoes', apiKey, questaosRoutes);
 app.use('/simulados', apiKey, simuladosRoutes);
 
 app.use('/usuarios', apiKey, usuariosRoutes);
+app.use('/usuarios', apiKey, fotoRouteUsuario);
 
 app.use('/conteudo', apiKey, conteudoRoutes);
 
