@@ -1,8 +1,5 @@
-import Model from '../models/ExemploModel.js';
-import {
-    upload as uploadStorage,
-    deletar as deletarStorage,
-} from '../lib/helpers/arquivoHelper.js';
+import IntegranteModel from '../models/IntegranteModel.js';
+import { upload as uploadStorage, deletar as deletarStorage } from '../lib/helper/arquivoHelper.js';
 
 const uploadArquivo = (tipo) => async (req, res) => {
     try {
@@ -12,23 +9,23 @@ const uploadArquivo = (tipo) => async (req, res) => {
             return res.status(400).json({ error: 'ID inválido.' });
         }
 
-        const exemplo = await ExemploModel.buscarPorId(parseInt(id));
+        const integrante = await IntegranteModel.buscarPorId(parseInt(id));
 
-        if (!exemplo) {
-            return res.status(404).json({ error: 'Registro não encontrado.' });
+        if (!integrante) {
+            return res.status(404).json({ error: 'Integrante não encontrado.' });
         }
 
         if (!req.file) {
             return res.status(400).json({ error: 'Nenhum arquivo enviado.' });
         }
 
-        if (exemplo[tipo]) {
-            await deletarStorage(exemplo[tipo]);
+        if (integrante[tipo]) {
+            await deletarStorage(integrante[tipo]);
         }
 
-        exemplo[tipo] = await uploadStorage(id, req.file);
+        integrante[tipo] = await uploadStorage(id, req.file);
 
-        const data = await exemplo.atualizar();
+        const data = await integrante.atualizar();
 
         return res.status(200).json({
             message: `${tipo} enviado com sucesso!`,
@@ -49,20 +46,20 @@ const buscarArquivo = (tipo) => async (req, res) => {
             return res.status(400).json({ error: 'ID inválido.' });
         }
 
-        const exemplo = await ExemploModel.buscarPorId(parseInt(id));
+        const integrante = await IntegranteModel.buscarPorId(parseInt(id));
 
-        if (!exemplo) {
-            return res.status(404).json({ error: 'Registro não encontrado.' });
+        if (!integrante) {
+            return res.status(404).json({ error: 'Integrante não encontrado.' });
         }
 
-        if (!exemplo[tipo]) {
+        if (!integrante[tipo]) {
             return res.status(404).json({
                 error: `Nenhum ${tipo} cadastrado.`,
             });
         }
 
         return res.status(200).json({
-            url: exemplo[tipo],
+            url: integrante[tipo],
         });
     } catch (error) {
         return res.status(500).json({
@@ -79,23 +76,23 @@ const deletarArquivo = (tipo) => async (req, res) => {
             return res.status(400).json({ error: 'ID inválido.' });
         }
 
-        const exemplo = await ExemploModel.buscarPorId(parseInt(id));
+        const integrante = await IntegranteModel.buscarPorId(parseInt(id));
 
-        if (!exemplo) {
-            return res.status(404).json({ error: 'Registro não encontrado.' });
+        if (!integrante) {
+            return res.status(404).json({ error: 'Integrante não encontrado.' });
         }
 
-        if (!exemplo[tipo]) {
+        if (!integrante[tipo]) {
             return res.status(404).json({
                 error: `Nenhum ${tipo} para remover.`,
             });
         }
 
-        await deletarStorage(exemplo[tipo]);
+        await deletarStorage(integrante[tipo]);
 
-        exemplo[tipo] = null;
+        integrante[tipo] = null;
 
-        await exemplo.atualizar();
+        await integrante.atualizar();
 
         return res.status(200).json({
             message: `${tipo} removido com sucesso!`,

@@ -1,5 +1,5 @@
 import express from 'express';
-import * as controller from '../controllers/arquivoController.js';
+import * as controller from '../controllers/arquivoIntegranteController.js';
 import { upload } from '../lib/middlewares/fileGate.js';
 
 const router = express.Router();
