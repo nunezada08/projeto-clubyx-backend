@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import 'dotenv/config';
 import alternativasRoutes from './routes/alternativaRoute.js';
 import equipesRoutes from './routes/equipeRoute.js';
@@ -26,6 +27,7 @@ import arquivoUsuarioRoutes from './routes/arquivoUsuarioRoute.js'
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
