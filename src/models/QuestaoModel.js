@@ -51,7 +51,12 @@ export default class QuestaoModel {
             }
         }
 
-        return prisma.questao.findMany({ where });
+        return prisma.questao.findMany({
+            where, include: {
+            alternativas: true,
+            },
+        });
+
     }
 
     static async buscarPorId(id) {
