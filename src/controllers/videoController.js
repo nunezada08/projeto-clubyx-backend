@@ -129,4 +129,42 @@ export const uploadVideo = async (req, res) => {
     }
 };
 
-export default { uploadVideo };
+export const listVideos = async (req, res) => {
+    try {
+        const videos = await prisma.video.findMany({
+            orderBy: {
+                createdAt: 'desc',
+            },
+        });
+
+        return res.status(200).json({ videos });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: err.message || 'Erro ao listar vídeos' });
+    }
+};
+
+export const getVideoById = async (req, res) => {
+    try {
+        const id = parseInt(req.params.id, 10);
+
+        if (Number.isNaN(id)) {
+            return res.status(400).json({ error: 'ID inválido' });
+        }
+
+        const video = await prisma.video.findUnique({
+            where: { id },
+        });
+
+        if (!video) {
+            return res.status(404).json({ error: 'Vídeo não encontrado' });
+        }
+
+        return res.status(200).json({ video });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: err.message || 'Erro ao buscar vídeo' });
+    }
+};
+
+export default { uploadVideo, listVideos, getVideoById };

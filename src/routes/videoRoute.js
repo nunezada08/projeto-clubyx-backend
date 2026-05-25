@@ -2,7 +2,7 @@ import express from 'express';
 import multer from 'multer';
 import fs from 'fs';
 import path from 'path';
-import { uploadVideo } from '../controllers/videoController.js';
+import { uploadVideo, listVideos, getVideoById } from '../controllers/videoController.js';
 
 const router = express.Router();
 
@@ -30,5 +30,11 @@ const upload = multer({
 
 // POST /videos/upload
 router.post('/upload', upload.single('file'), uploadVideo);
+
+// GET /videos
+router.get('/', listVideos);
+
+// GET /videos/:id
+router.get('/:id', getVideoById);
 
 export default router;
