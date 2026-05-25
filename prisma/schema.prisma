@@ -38,6 +38,7 @@ model Usuario {
     senha          String
     numeroTelefone String?
     foto           String?
+    videos         Video[]
 
     @@map("Usuario")
 }
@@ -54,6 +55,20 @@ model Conteudo {
     videoAulas   String
 
     @@map("conteudo")
+}
+
+model Video {
+    id         Int      @id @default(autoincrement())
+    title      String?
+    filename   String
+    url        String
+    mime       String
+    size       Int
+    uploaderId Int?
+    uploader   Usuario? @relation(fields: [uploaderId], references: [id])
+    createdAt  DateTime @default(now())
+
+    @@map("video")
 }
 
 //Livro / autor  // Nunes
